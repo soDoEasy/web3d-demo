@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div id="app">
+    <model-gltf src="model/gltf/MAP_GLTF_OUTPUT 1.gltf"
+                :rotation="rotation"
+                :position="position"
+
+                :camera-position="cameraPosition"
+                @on-load="onLoad"
+                @on-click="onClick" smoothing></model-gltf>
+</div>
+<script src="vue.js"></script>
+<script src="vue-3d-model.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            cameraPosition:{
+                x: -300,
+                y: 400,
+                z: 600
+            },
+            position: {
+                x: 0,
+                y: 0,
+                z: 0
+            },
+            rotation: {
+                x: 0,
+                y: 0,
+                z: 0
+            },
+            intersected: null
+        },
+        methods: {
+            onClick(event){
+                console.log( event );
+
+            },
+            onLoad () {
+                // 自动旋转
+                // this.rotate();
+            },
+            rotate () {
+                this.rotation.y += 0.01;
+                requestAnimationFrame( this.rotate );
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
